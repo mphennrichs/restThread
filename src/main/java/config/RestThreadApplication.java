@@ -1,9 +1,13 @@
-package com.restThread.restThread;
+package config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableSwagger2
 @SpringBootApplication
+@ComponentScan(basePackages = "com.restThread")
 public class RestThreadApplication {
 
 	public static void main(String[] args) {
