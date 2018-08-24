@@ -27,25 +27,22 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @ApiOperation(value = "View a list of available products",response = Iterable.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list of users"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-        }
-    )
     @GetMapping(produces = "application/json")
+    @ApiOperation(value = "Retrieve a list of all users",response = Iterable.class)
     public List<User> getAll(){
 
         return userService.getAllUsers();
     }
 
     @GetMapping(path = "/search", produces = "application/json")
+    @ApiOperation(value = "Retrieve user by id",response = User.class)
     public User getUser(@RequestParam String id){
 
         return userService.getUser(id);
     }
 
     @PostMapping(path = "/add", consumes = "application/json")
+    @ApiOperation(value = "Add a user and return the same user if the operation succeeds",response = User.class)
     public ResponseEntity addUser(@RequestBody User user){
         try{
 
@@ -59,6 +56,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/update", consumes = "application/json")
+    @ApiOperation(value = "Update user data and return the same user if the operation succeeds",response = User.class)
     public ResponseEntity updateUser(@RequestBody User user){
         try{
 
