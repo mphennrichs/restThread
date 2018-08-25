@@ -24,20 +24,20 @@ public class ProductOfferingPriceServiceImpl implements ProductOfferingPriceServ
     }
 
     @Override
+    public List<ProductOfferingPrice> getAllActivatedProductOfferingPrice() {
+        return productOfferingPriceRepository.findByActivatedTrue();
+    }
+
+    @Override
     public ProductOfferingPrice getProductOfferingPrice(Long id) {
 
         return  productOfferingPriceRepository.findById(id).orElse(null);
     }
 
     @Override
-    public ProductOfferingPrice addProductOfferingPrice(ProductOfferingPrice pop) {
+    public ProductOfferingPrice saveOrUpdateProductOfferingPrice(ProductOfferingPrice pop) {
 
         return  productOfferingPriceRepository.save(pop);
-    }
-
-    @Override
-    public ProductOfferingPrice updateProductOfferingPrice(ProductOfferingPrice pop) {
-        return productOfferingPriceRepository.save(pop);
     }
 
     @Override

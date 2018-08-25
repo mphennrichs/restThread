@@ -8,11 +8,11 @@ public interface ProductOfferingPriceService {
 
     List<ProductOfferingPrice> getAllProductOfferingPrice();
 
+    List<ProductOfferingPrice> getAllActivatedProductOfferingPrice();
+
     ProductOfferingPrice getProductOfferingPrice(Long id);
 
-    ProductOfferingPrice addProductOfferingPrice(ProductOfferingPrice pop);
-
-    ProductOfferingPrice updateProductOfferingPrice(ProductOfferingPrice pop);
+    ProductOfferingPrice saveOrUpdateProductOfferingPrice(ProductOfferingPrice pop);
 
     ProductOfferingPrice deleteProductOfferingPrice(Long id);
 }

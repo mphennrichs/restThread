@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,11 +26,18 @@ public class ProductOfferingPriceController {
     @Autowired
     ProductOfferingPriceService popService;
 
-    @GetMapping(produces = "application/json")
+    @GetMapping(path="/", produces = "application/json")
     @ApiOperation(value = "Retrieve a list of all ProductOfferingPrice",response = Iterable.class)
     public List<ProductOfferingPrice> getAll(){
 
         return popService.getAllProductOfferingPrice();
+    }
+
+    @GetMapping(path="/activated", produces = "application/json")
+    @ApiOperation(value = "Retrieve a list of all activateds ProductOfferingPrice",response = Iterable.class)
+    public List<ProductOfferingPrice> getAllActivated(){
+
+        return popService.getAllActivatedProductOfferingPrice();
     }
 
     @GetMapping(path = "/search", produces = "application/json")
@@ -39,7 +47,7 @@ public class ProductOfferingPriceController {
         return popService.getProductOfferingPrice(id);
     }
 
-    @GetMapping(path = "/delete", produces = "application/json")
+    @DeleteMapping(path = "/delete", produces = "application/json")
     @ApiOperation(value = "Delete ProductOfferingPrice by id",response = ProductOfferingPrice.class)
     public ProductOfferingPrice deleteProductOfferingPrice(@RequestParam Long id){
 
@@ -52,7 +60,7 @@ public class ProductOfferingPriceController {
     public ResponseEntity addProductOfferingPrice(@RequestBody ProductOfferingPrice pop){
         try{
 
-            popService.addProductOfferingPrice(pop);
+            popService.saveOrUpdateProductOfferingPrice(pop);
 
         } catch (Exception ex) {
             return ResponseEntity.status(WSHTTPConnection.INTERNAL_ERR).body(ex.getMessage());
@@ -67,7 +75,7 @@ public class ProductOfferingPriceController {
     public ResponseEntity updateProductOfferingPrice(@RequestBody ProductOfferingPrice pop){
         try{
 
-            popService.addProductOfferingPrice(pop);
+            popService.saveOrUpdateProductOfferingPrice(pop);
 
         } catch (Exception ex) {
             return ResponseEntity.status(WSHTTPConnection.INTERNAL_ERR).body(ex.getMessage());
