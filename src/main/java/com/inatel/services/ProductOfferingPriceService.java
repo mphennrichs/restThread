@@ -10,6 +10,8 @@ public interface ProductOfferingPriceService {
 
     List<ProductOfferingPrice> getAllActivatedProductOfferingPrice();
 
+    void activateProductOfferingPrice() throws InterruptedException;
+
     ProductOfferingPrice getProductOfferingPrice(Long id);
 
     ProductOfferingPrice saveOrUpdateProductOfferingPrice(ProductOfferingPrice pop);

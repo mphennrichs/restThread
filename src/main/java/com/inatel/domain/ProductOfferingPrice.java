@@ -45,6 +45,6 @@ public class ProductOfferingPrice {
 
     @NotNull
     @Builder.Default
-    boolean activated = false;
+    Boolean activated = false;
 }
 

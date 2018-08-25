@@ -5,6 +5,7 @@ import com.inatel.services.ConfigVariableService;
 import com.sun.xml.internal.ws.transport.http.WSHTTPConnection;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("configvariable")
 @Api(value="ConfigVariable")
@@ -34,10 +36,12 @@ public class ConfigVariableController {
     }
 
     @GetMapping(path = "/search", produces = "application/json")
-    @ApiOperation(value = "Retrieve Configuration by id",response = ConfigVariable.class)
+    @ApiOperation(value = "Retrieve Configuration by name",response = ConfigVariable.class)
     public ConfigVariable getProductOfferingPrice(@RequestParam String name){
 
-        return configService.getConfigurationByName(name);
+        log.info("[SEARCH] retreiving ConfigVariable: " + name);
+
+        return configService.getConfigurationByNameAndActiveTrue(name);
     }
 
     @DeleteMapping(path = "/delete", produces = "application/json")
@@ -50,45 +54,26 @@ public class ConfigVariableController {
     @PostMapping(path = "/add", consumes = "application/json")
     @ApiOperation(value = "Add a Configuration and return the same object if the operation succeeds",
             response = ConfigVariable.class)
-    public ResponseEntity saveConfiguration(@RequestBody ConfigVariable configuration){
-        try{
+    public ConfigVariable saveConfiguration(@RequestBody ConfigVariable configuration){
 
-            configService.saveConfiguration(configuration);
 
-        } catch (Exception ex) {
-            return ResponseEntity.status(WSHTTPConnection.INTERNAL_ERR).body(ex.getMessage());
-        }
 
-        return ResponseEntity.ok(configuration);
+        return configService.saveConfiguration(configuration);
     }
 
     @PostMapping(path = "/addList", consumes = "application/json")
     @ApiOperation(value = "Add a Configuration and return the same object if the operation succeeds",
             response = ConfigVariable.class)
-    public ResponseEntity saveConfiguration(@RequestBody List<ConfigVariable> configurationList){
-        try{
+    public List<ConfigVariable> saveConfiguration(@RequestBody List<ConfigVariable> configurationList){
 
-            configService.saveConfiguration(configurationList);
-
-        } catch (Exception ex) {
-            return ResponseEntity.status(WSHTTPConnection.INTERNAL_ERR).body(ex.getMessage());
-        }
-
-        return ResponseEntity.ok(configurationList);
+        return configService.saveConfiguration(configurationList);
     }
 
     @PutMapping(path = "/update", consumes = "application/json")
     @ApiOperation(value = "Update ProductOfferingPrice data and return the same ProductOfferingPrice if the operation succeeds",
             response = ConfigVariable.class)
-    public ResponseEntity updateProductOfferingPrice(@RequestBody ConfigVariable configuration){
-        try{
+    public ConfigVariable updateProductOfferingPrice(@RequestBody ConfigVariable configuration){
 
-            configService.updateConfigurationByName(configuration);
-
-        } catch (Exception ex) {
-            return ResponseEntity.status(WSHTTPConnection.INTERNAL_ERR).body(ex.getMessage());
-        }
-
-        return ResponseEntity.ok(configuration);
+        return  configService.updateConfigurationByName(configuration);
     }
 }

@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ConfigVariableRepository extends CrudRepository<ConfigVariable, Long> {
     ConfigVariable findConfigVariableByKey(String name);
+    ConfigVariable findConfigVariableByKeyAndActiveTrue(String name);
 }
