@@ -1,4 +1,4 @@
-package com.restThread.restThread.config;
+package com.inatel.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.restThread.restThread.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.inatel.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }

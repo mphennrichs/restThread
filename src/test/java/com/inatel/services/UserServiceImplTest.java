@@ -1,8 +1,6 @@
-package com.restThread.restThread.services;
+package com.inatel.services;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class UserServiceImplTest {
 

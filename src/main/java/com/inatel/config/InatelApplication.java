@@ -1,4 +1,4 @@
-package com.restThread.restThread.config;
+package com.inatel.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,12 +9,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-@ComponentScan(basePackages = "com.restThread")
-@EnableJpaRepositories("com.restThread.restThread.repositories")
-@EntityScan("com.restThread.restThread.domain")
-public class RestThreadApplication {
+@ComponentScan(basePackages = "com.inatel")
+@EnableJpaRepositories("com.inatel.repositories")
+@EntityScan("com.inatel.domain")
+public class InatelApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestThreadApplication.class, args);
+		SpringApplication.run(InatelApplication.class, args);
 	}
 }
