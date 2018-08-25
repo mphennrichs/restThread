@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping(path = "/search", produces = "application/json")
     @ApiOperation(value = "Retrieve user by id",response = User.class)
-    public User getUser(@RequestParam String id){
+    public User getUser(@RequestParam Long id){
 
         return userService.getUser(id);
     }

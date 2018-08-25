@@ -6,12 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
 @Getter
 @Setter
+@Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name="users")
 public class User {
-    String id;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    Long id;
+
     String name;
 }
+
